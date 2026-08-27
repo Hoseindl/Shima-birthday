@@ -47,47 +47,46 @@ body::before {
     z-index: 1;
 }
 
-/* افکت آب و انیمیشن ریختن سطل آب روی صفحه */
+/* اصلاح کامل لایه افکت پاشیدن آب روی صفحه با بالاترین z-index */
 #water-splash-effect {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     pointer-events: none;
-    z-index: 9999;
-    display: flex;
+    z-index: 999999;
+    display: none; /* پیش‌فرض مخفی */
     justify-content: space-around;
     align-items: flex-start;
-    opacity: 0;
-    transition: opacity 0.2s ease;
+    overflow: hidden;
 }
 
 #water-splash-effect.active {
-    opacity: 1;
-    animation: splashDown 0.8s ease-out forwards;
+    display: flex;
 }
 
 .splash-emoji {
-    font-size: 4rem;
-    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
-    transform: translateY(-100px) scale(0.5);
-    animation: dropWater 0.8s ease-in-out forwards;
+    font-size: 3.5rem;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));
+    animation: dropWater 0.7s ease-in forwards;
 }
 
-.splash-emoji:nth-child(2) { animation-delay: 0.1s; font-size: 5rem; }
-.splash-emoji:nth-child(3) { animation-delay: 0.2s; font-size: 4.5rem; }
+.splash-emoji:nth-child(1) { animation-delay: 0s; }
+.splash-emoji:nth-child(2) { animation-delay: 0.1s; font-size: 4.5rem; }
+.splash-emoji:nth-child(3) { animation-delay: 0.15s; font-size: 4rem; }
+.splash-emoji:nth-child(4) { animation-delay: 0.2s; font-size: 5rem; }
 
 @keyframes dropWater {
     0% {
-        transform: translateY(-120px) scale(0.5) rotate(0deg);
+        transform: translateY(-80px) scale(0.4) rotate(0deg);
         opacity: 0;
     }
-    50% {
+    30% {
         opacity: 1;
     }
     100% {
-        transform: translateY(70vh) scale(1.6) rotate(15deg);
+        transform: translateY(85vh) scale(1.5) rotate(20deg);
         opacity: 0;
     }
 }

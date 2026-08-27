@@ -1,15 +1,15 @@
 :root {
     --md-sys-color-background: #fffbfe;
-    --md-sys-color-surface: #fdf8fc;
-    --md-sys-color-primary: #6750a4;
+    --md-sys-color-surface: rgba(255, 255, 255, 0.94);
+    --md-sys-color-primary: #7c3aed;
     --md-sys-color-on-primary: #ffffff;
-    --md-sys-color-primary-container: #eaddff;
-    --md-sys-color-secondary: #625b71;
-    --md-sys-color-error: #b3261e;
-    --md-sys-color-success: #107c41;
-    --md-sys-color-outline: #79747e;
-    --md-sys-color-surface-variant: #e7e0ec;
-    --md-sys-color-on-surface: #1d1b20;
+    --md-sys-color-primary-container: #ede9fe;
+    --md-sys-color-secondary: #4b5563;
+    --md-sys-color-error: #dc2626;
+    --md-sys-color-success: #16a34a;
+    --md-sys-color-outline: #d1d5db;
+    --md-sys-color-surface-variant: #f3f4f6;
+    --md-sys-color-on-surface: #1f2937;
 }
 
 * {
@@ -20,25 +20,47 @@
 }
 
 body {
-    background: linear-gradient(135deg, #f3edf7, #ece6f0);
+    /* تنظیم عکس مینیمال به عنوان پس‌زمینه (فایل background.jpg) */
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: var(--md-sys-color-on-surface);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 16px;
+    position: relative;
+}
+
+/* یک لایه تیره/رنگی ملایم روی عکس می‌اندازد تا متن‌ها فوق‌العاده خوانا شوند */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.4); 
+    backdrop-filter: blur(4px); /* تار کردن ملایم عکس پس‌زمینه برای تمرکز روی کارت */
+    z-index: 1;
 }
 
 .card-container {
     background: var(--md-sys-color-surface);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     width: 100%;
-    max-width: 540px;
-    padding: 32px;
-    border-radius: 28px;
-    box-shadow: 0 4px 24px rgba(103, 80, 164, 0.08);
-    border: 1px solid rgba(121, 116, 126, 0.12);
+    max-width: 650px;
+    padding: 36px;
+    border-radius: 32px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.8);
     text-align: center;
     position: relative;
+    z-index: 2; /* بالاتر از لایه تار کننده پس‌زمینه قرار می‌گیرد */
     overflow: hidden;
 }
 
@@ -52,16 +74,16 @@ body {
 }
 
 @keyframes mdFadeIn {
-    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+    from { opacity: 0; transform: translateY(16px) scale(0.97); }
     to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .icon-header {
-    font-size: 40px;
+    font-size: 44px;
     color: var(--md-sys-color-primary);
     background: var(--md-sys-color-primary-container);
-    padding: 14px;
-    border-radius: 20px;
+    padding: 16px;
+    border-radius: 24px;
     margin-bottom: 20px;
 }
 
@@ -71,17 +93,17 @@ body {
 }
 
 h2 {
-    font-size: 1.35rem;
+    font-size: 1.45rem;
     font-weight: 700;
     color: var(--md-sys-color-on-surface);
-    margin-bottom: 12px;
+    margin-bottom: 14px;
 }
 
 p {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     color: var(--md-sys-color-secondary);
     margin-bottom: 24px;
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 .input-group {
@@ -93,31 +115,30 @@ p {
 
 input {
     flex: 1;
-    padding: 12px 18px;
-    border: 1px solid var(--md-sys-color-outline);
-    border-radius: 12px;
+    padding: 14px 20px;
+    border: 2px solid var(--md-sys-color-outline);
+    border-radius: 16px;
     outline: none;
-    font-size: 0.95rem;
-    background: transparent;
+    font-size: 1rem;
+    background: #ffffff;
     color: var(--md-sys-color-on-surface);
     transition: all 0.2s ease;
 }
 
 input:focus {
     border-color: var(--md-sys-color-primary);
-    border-width: 2px;
-    padding: 11px 17px;
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15);
 }
 
 .md-btn {
-    padding: 12px 24px;
+    padding: 14px 28px;
     border: none;
     border-radius: 100px;
     cursor: pointer;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 600;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .md-btn:active {
@@ -130,8 +151,8 @@ input:focus {
 }
 
 .md-btn.primary:hover {
-    box-shadow: 0 4px 8px rgba(103, 80, 164, 0.25);
-    background: #5b4397;
+    background: #6d28d9;
+    box-shadow: 0 6px 16px rgba(124, 58, 237, 0.3);
 }
 
 .md-btn.success {
@@ -139,103 +160,137 @@ input:focus {
     color: white;
     width: 100%;
     margin-top: 16px;
-    border-radius: 16px;
-    font-size: 1rem;
+    border-radius: 20px;
+    font-size: 1.1rem;
 }
 
 .md-btn.success:hover {
-    box-shadow: 0 4px 12px rgba(16, 124, 65, 0.25);
+    background: #15803d;
+    box-shadow: 0 6px 16px rgba(22, 163, 74, 0.3);
 }
 
 .options-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     margin-bottom: 16px;
 }
 
 .md-btn.option {
     background: var(--md-sys-color-surface-variant);
     color: var(--md-sys-color-on-surface);
-    border: none;
+    border: 1px solid var(--md-sys-color-outline);
     text-align: right;
-    padding: 14px 20px;
-    border-radius: 14px;
+    padding: 16px 22px;
+    border-radius: 18px;
     font-weight: 500;
     box-shadow: none;
 }
 
 .md-btn.option:hover {
-    background: #ded8e6;
+    background: #e5e7eb;
+    border-color: var(--md-sys-color-primary);
     transform: translateX(-4px);
-}
-
-.error-msg {
-    color: var(--md-sys-color-error);
-    font-weight: 600;
-    font-size: 0.85rem;
-    min-height: 20px;
-}
-
-.result-msg {
-    color: var(--md-sys-color-success);
-    font-weight: 600;
-    font-size: 0.9rem;
-    min-height: 20px;
 }
 
 .hidden {
     display: none !important;
 }
 
-/* استایل ۳ عکس در مرحله ۵ */
-.fake-images {
+/* عکس‌های بزرگ‌شده مرحله ۵ */
+.fake-images-large {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 14px;
     margin-bottom: 24px;
 }
 
-.puzzle-img {
-    width: 30%;
-    height: 90px;
+.puzzle-img-large {
+    width: 31%;
+    height: 180px;
     object-fit: cover;
-    border-radius: 14px;
-    border: 2px solid var(--md-sys-color-surface-variant);
-    background: var(--md-sys-color-surface-variant);
-    transition: transform 0.2s;
+    border-radius: 20px;
+    border: 3px solid white;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    background: #e5e7eb;
+    transition: transform 0.3s ease;
 }
 
-.puzzle-img:hover {
-    transform: scale(1.03);
+.puzzle-img-large:hover {
+    transform: scale(1.05);
+}
+
+/* استایل پاپ‌آپ */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease;
+}
+
+.popup-card {
+    background: white;
+    padding: 30px;
+    border-radius: 28px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    animation: popUpScale 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popUpScale {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.popup-icon {
+    font-size: 50px;
+    color: var(--md-sys-color-error);
+    margin-bottom: 12px;
+}
+
+.popup-card p {
+    color: #1f2937;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 20px;
 }
 
 .birthday-card {
     background: #ffffff;
-    border: 1px solid var(--md-sys-color-surface-variant);
-    padding: 24px;
-    border-radius: 20px;
+    border: 1px solid var(--md-sys-color-outline);
+    padding: 28px;
+    border-radius: 24px;
     text-align: right;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
 }
 
 .birthday-card h3 {
     color: var(--md-sys-color-primary);
-    margin: 8px 0;
+    margin: 10px 0;
 }
 
 .divider {
-    margin: 16px 0;
+    margin: 18px 0;
     border: 0;
-    border-top: 1px dashed var(--md-sys-color-surface-variant);
+    border-top: 1px dashed var(--md-sys-color-outline);
 }
 
 .quote {
     font-style: italic;
     color: var(--md-sys-color-secondary);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     background: var(--md-sys-color-surface-variant);
-    padding: 12px;
-    border-radius: 12px;
-    margin-top: 8px;
+    padding: 14px;
+    border-radius: 14px;
+    margin-top: 10px;
 }

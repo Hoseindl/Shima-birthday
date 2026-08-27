@@ -12,21 +12,23 @@
 </head>
 <body>
 
-<!-- صفحه خوش‌آمدگویی اولیه (پاپ‌آپ گنده اول سایت) -->
+<!-- صفحه خوش‌آمدگویی با متن و قابلیت پخش دستی ویدیو -->
 <div id="welcome-overlay" class="welcome-overlay">
     <div class="welcome-card">
-        <!-- گیف دلخواهت (اسم فایل گیفت رو اینجا جایگزین کن) -->
-        <img src="gif.gif" alt="Welcome GIF" class="welcome-gif">
-        
         <!-- متن گنده اول صفحه -->
-        <h1 class="welcome-title">بهت گفتیم وقتی که میخندی شبیه این میشی  😎</h1>
-        <p class="welcome-desc">بیا بریم سفید  کوچولو .. کارت داریم!</p>
+        <h1 class="welcome-title">تا حالا دیدی وقتی گریه میکنی چقدر شبیه اینی  😎</h1>
+        <p class="welcome-desc">خودتتتت رو ببین ...</p>
+
+        <!-- ویدیو با قابلیت کنترل دستی (controls) و بدون پخش خودکار -->
+        <video id="intro-video" class="welcome-gif" controls playsinline onended="onVideoEnded()">
+            <source src="your-video-name.mp4" type="video/mp4">
+            مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+        </video>
         
-        <!-- دکمه ورود به سوالات -->
-        <button class="md-btn primary welcome-btn" onclick="startQuizFromWelcome()">نمیامممممممم آقا  🚀</button>
+        <!-- دکمه‌ی رد کردن در صورت تمایل -->
+        <button class="md-btn primary welcome-btn" onclick="skipWelcome()" style="margin-top: 15px;">رد کردن و ورود به چالش 🚀</button>
     </div>
 </div>
-
 
 
     

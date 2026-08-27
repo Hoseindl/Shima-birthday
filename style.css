@@ -338,4 +338,74 @@ input:focus {
     padding: 16px;
     border-radius: 16px;
     margin-top: 12px;
+    
+}
+
+/* استایل صفحه خوش‌آمدگویی اولیه */
+.welcome-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.welcome-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.welcome-card {
+    background: var(--md-sys-color-surface, #ffffff);
+    padding: 40px 30px;
+    border-radius: 36px;
+    width: 90%;
+    max-width: 480px;
+    text-align: center;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    animation: welcomeScale 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes welcomeScale {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.welcome-gif {
+    width: 140px;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+}
+
+.welcome-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--md-sys-color-on-surface, #1f2937);
+    margin-bottom: 12px;
+}
+
+.welcome-desc {
+    font-size: 1.05rem;
+    color: var(--md-sys-color-secondary, #4b5563);
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.welcome-btn {
+    width: 100%;
+    padding: 16px;
+    font-size: 1.15rem;
+    border-radius: 20px;
 }

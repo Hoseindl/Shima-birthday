@@ -381,12 +381,16 @@ input:focus {
     to { transform: scale(1); opacity: 1; }
 }
 
+/* سایز استاندارد و متناسب ویدیو در صفحه خوش‌آمدگویی */
 .welcome-gif {
-    width: 140px;
-    height: auto;
-    margin-bottom: 20px;
+    width: 100%;
+    max-width: 380px;  /* حداکثر عرض استاندارد برای کادرها */
+    height: 220px;     /* ارتفاع ثابت و متناسب */
+    object-fit: cover; /* پر کردن کادر بدون به‌هم‌ریختگی ابعاد */
     border-radius: 20px;
-    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+    margin-bottom: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    background: #000;  /* رنگ پس‌زمینه در صورت لود نشدن آنی ویدیو */
 }
 
 .welcome-title {

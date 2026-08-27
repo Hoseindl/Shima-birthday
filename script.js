@@ -147,7 +147,7 @@ function checkQ5() {
     const nextBtn = document.getElementById('q5-next');
 
     if (val === "رقیه") {
-        showPopup("🎉به رقیه نخندیم  😂❤️");
+        showPopup("🎉آخه زنننننننننن کی میگه من فوت فتیشم لامصب  😂❤️");
         nextBtn.classList.remove('hidden');
     } else {
         q5Errors++;

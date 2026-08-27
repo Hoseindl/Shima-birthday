@@ -190,17 +190,29 @@ function checkQ6(option) {
 function finishExperience() {
     showPopup("دوست داریم در جریان باششششش: ❤️😂");
 }
-function startQuizFromWelcome() {
-    // محو کردن صفحه ولکام
+
+// این تابع وقتی اجرا میشه که ویدیو تا آخر (۱۰ ثانیه) پخش بشه و تموم بشه
+function onVideoEnded() {
+    // کمی مکث کوتاه (مثلاً نیم ثانیه) بعد از اتمام ویدیو و بعد ورود به چالش
+    setTimeout(() => {
+        skipWelcome();
+    }, 500);
+}
+
+// تابع رد کردن یا ورود بعد از اتمام ویدیو
+function skipWelcome() {
     const welcomeOverlay = document.getElementById('welcome-overlay');
-    welcomeOverlay.classList.add('hidden');
+    
+    if (!welcomeOverlay.classList.contains('hidden')) {
+        welcomeOverlay.classList.add('hidden');
 
-    // پلی کردن موزیک پس‌زمینه (در صورت وجود)
-    const music = document.getElementById('bg-music');
-    if (music) {
-        music.play().catch(e => console.log("Audio play blocked by browser policy"));
+        // پلی کردن موزیک پس‌زمینه (در صورت وجود)
+        const music = document.getElementById('bg-music');
+        if (music) {
+            music.play().catch(e => console.log("Audio play blocked"));
+        }
+
+        // رفتن به مرحله اول سوالات
+        nextStep(1);
     }
-
-    // رفتن به مرحله اول سوالات
-    nextStep(1);
 }

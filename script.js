@@ -1,17 +1,23 @@
-// تابع شروع موزیک و رفتن به سوال اول
 function startExperience() {
     const music = document.getElementById('bg-music');
     music.play().catch(e => console.log("Audio play blocked by browser policy"));
     nextStep(1);
 }
 
-// مدیریت جابجایی بین مراحل
 function nextStep(stepNumber) {
     document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
     document.getElementById(`step-${stepNumber}`).classList.add('active');
 }
 
-// --- سؤال اول ---
+function showPopup(message) {
+    document.getElementById('popup-text').innerHTML = message;
+    document.getElementById('popup-overlay').classList.remove('hidden');
+}
+
+function closePopup() {
+    document.getElementById('popup-overlay').classList.add('hidden');
+}
+
 let q1Errors = 0;
 const q1Messages = [
     "آخه تو رو چه به این عدد؟ بی‌مغز 😂",
@@ -28,65 +34,50 @@ const q1Messages = [
 
 function checkQ1() {
     const val = document.getElementById('q1-input').value.trim();
-    const msgEl = document.getElementById('q1-msg');
 
     if (val === "0") {
-        msgEl.style.color = "#107c41";
-        msgEl.innerHTML = "🎉 بالاخره! دیدی تونستی؟ 😂";
+        showPopup("🎉 بالاخره! دیدی تونستی؟ 😂");
         setTimeout(() => {
+            closePopup();
             nextStep(2);
         }, 1500);
     } else {
         let msgIndex = q1Errors < q1Messages.length ? q1Errors : q1Messages.length - 1;
-        msgEl.style.color = "#b3261e";
-        msgEl.innerHTML = q1Messages[msgIndex];
+        showPopup(q1Messages[msgIndex]);
         q1Errors++;
     }
 }
 
-// --- سؤال دوم ---
 function checkQ2(option) {
-    const msgEl = document.getElementById('q2-msg');
     const nextBtn = document.getElementById('q2-next');
 
     if (option === 1) {
-        msgEl.style.color = "#b3261e";
-        msgEl.innerHTML = "ای کص‌کش  😂😂 می‌دونستم خودتم می‌خوای!";
+        showPopup("ای کص‌کش  😂😂 می‌دونستم خودتم می‌خوای!");
     } else if (option === 2) {
-        msgEl.style.color = "#b3261e";
-        msgEl.innerHTML = "نههههه  😂 معلومه دلت نیست!";
+        showPopup("نههههه  😂 معلومه دلت نیست!");
     } else if (option === 3) {
-        msgEl.style.color = "#b3261e";
-        msgEl.innerHTML = "می‌موندی حالا...مگه چی می‌خواست بشه؟  😂";
+        showPopup("می‌موندی حالا...مگه چی می‌خواست بشه؟  😂");
     } else if (option === 4) {
-        msgEl.style.color = "#107c41";
-        msgEl.innerHTML = "از تو هیچی بعید نیست، سگ سفید  😂😂 (جواب درست!)";
+        showPopup("از تو هیچی بعید نیست، سگ سفید  😂😂 (جواب درست!)");
         nextBtn.classList.remove('hidden');
     }
 }
 
-// --- سؤال سوم ---
 function checkQ3(option) {
-    const msgEl = document.getElementById('q3-msg');
     const nextBtn = document.getElementById('q3-next');
 
     if (option === 1) {
-        msgEl.style.color = "#b3261e";
-        msgEl.innerHTML = "گوه نخور کثیییییف  😂";
+        showPopup("گوه نخور کثیییییف  😂");
     } else if (option === 2) {
-        msgEl.style.color = "#b3261e";
-        msgEl.innerHTML = "می‌دونستم می‌دونستم.....من نباید اینو می‌فهمیدم  😂";
+        showPopup("می‌دونستم می‌دونستم.....من نباید اینو می‌فهمیدم  😂");
     } else if (option === 3) {
-        msgEl.style.color = "#b3261e";
-        msgEl.innerHTML = "فساد چیه شما خیلی بیشتریدی خیلی!";
+        showPopup("فساد چیه شما خیلی بیشتریدی خیلی!");
     } else if (option === 4) {
-        msgEl.style.color = "#107c41";
-        msgEl.innerHTML = "من زیر بار نمی‌رم!می‌دونم انجامش دادی، ممکن نیست...  ✅";
+        showPopup("من زیر بار نمی‌رم!می‌دونم انجامش دادی، ممکن نیست...  ✅");
         nextBtn.classList.remove('hidden');
     }
 }
 
-// --- سؤال چهارم ---
 let q4Errors = 0;
 const q4WrongMsgs = [
     "جوووون؟ 😂",
@@ -101,71 +92,59 @@ const q4WrongMsgs = [
 
 function checkQ4() {
     const val = document.getElementById('q4-input').value.trim().toLowerCase();
-    const msgEl = document.getElementById('q4-msg');
     const nextBtn = document.getElementById('q4-next');
 
     if (val === "کون" || val === "کون.") {
-        msgEl.style.color = "#107c41";
-        msgEl.innerHTML = "🎉 بالاخره! مغز مبارک روشن شد  😂";
+        showPopup("🎉 بالاخره! مغز مبارک روشن شد  😂");
         nextBtn.classList.remove('hidden');
     } else {
         let randMsg = q4WrongMsgs[Math.floor(Math.random() * q4WrongMsgs.length)];
-        msgEl.style.color = "#b3261e";
-        msgEl.innerHTML = randMsg;
+        showPopup(randMsg);
         q4Errors++;
     }
 }
 
-// --- سؤال پنجم (۳ عکس) ---
 let q5Errors = 0;
 function checkQ5() {
     const val = document.getElementById('q5-input').value.trim();
-    const msgEl = document.getElementById('q5-msg');
     const nextBtn = document.getElementById('q5-next');
 
     if (val === "رقیه") {
-        msgEl.style.color = "#107c41";
-        msgEl.innerHTML = "🎉 آفرینننن! بالاخره مغز مبارک همکاری کرد  😂❤️";
+        showPopup("🎉 آفرینننن! بالاخره مغز مبارک همکاری کرد  😂❤️");
         nextBtn.classList.remove('hidden');
     } else {
         q5Errors++;
-        msgEl.style.color = "#b3261e";
         if (q5Errors === 1) {
-            msgEl.innerHTML = "جوووون؟  😂 سه تا عکس گذاشتم، نه سه تا معمای حل‌نشدنی! دوباره نگاه کن.";
+            showPopup("جوووون؟  😂 سه تا عکس گذاشتم، نه سه تا معمای حل‌نشدنی! دوباره نگاه کن.");
         } else if (q5Errors === 2) {
-            msgEl.innerHTML = "نههههه  😂 این مغزی که این همه ازش تعریف کردم کجاست؟";
+            showPopup("نههههه  😂 این مغزی که این همه ازش تعریف کردم کجاست؟");
         } else if (q5Errors === 3) {
-            msgEl.innerHTML = "عزیزم...  😭 یه بار دیگه به عکسا نگاه کن، داری آبروی هوشتو می‌بری  😂";
+            showPopup("عزیزم...  😭 یه بار دیگه به عکسا نگاه کن، داری آبروی هوشتو می‌بری  😂");
         } else if (q5Errors === 4) {
-            msgEl.innerHTML = "من دیگه کمکت نمی‌کنم  😌 خودت گفتی باهوشی! ثابتش کن  😂";
+            showPopup("من دیگه کمکت نمی‌کنم  😌 خودت گفتی باهوشی! ثابتش کن  😂");
         } else {
-            msgEl.innerHTML = "رقیه  😭😂 فقط همین یه کلمه‌ست... بگو رقیه و نجات پیدا کن!";
+            showPopup("رقیه  😭😂 فقط همین یه کلمه‌ست... بگو رقیه و نجات پیدا کن!");
         }
     }
 }
 
-// --- سؤال ششم ---
 function checkQ6(option) {
-    const msgEl = document.getElementById('q6-msg');
     const extraEl = document.getElementById('q6-extra');
     extraEl.innerHTML = "";
 
     if (option === 1) {
-        msgEl.style.color = "#107c41";
-        msgEl.innerHTML = "🎉 هوررررراااا! بهت ۱۰ هزار تومن میدممم  💸😂";
+        showPopup("🎉 هوررررراااا! بهت ۱۰ هزار تومن میدممم  💸😂");
         extraEl.innerHTML = `<button class="md-btn success next-btn" onclick="alert('گول خوردی پوچ بود! 😂')">پیشنهاد بهتر رو ببین  😏</button>`;
     } else if (option === 2) {
-        msgEl.style.color = "#107c41";
-        msgEl.innerHTML = "🎉 هوررررراااا! این بار ۴۵ هزار تومن  💸💸";
+        showPopup("🎉 هوررررراااا! این بار ۴۵ هزار تومن  💸💸");
         extraEl.innerHTML = `<button class="md-btn success next-btn" onclick="alert('بازم پوچ! حماقت نکن 😂')">یکی بهتر هم هست؟ 😏</button>`;
     } else if (option === 3) {
-        msgEl.style.color = "#107c41";
-        msgEl.innerHTML = "😂 هورررررااااا! ۱۵۰ هزار تومن  💸💸💸";
+        showPopup("😂 هورررررااااا! ۱۵۰ هزار تومن  💸💸💸");
         extraEl.innerHTML = `<button class="md-btn success next-btn" onclick="nextStep('final')">خب ببینیم آخرش چی میشه  😂</button>`;
     } else if (option === 4) {
-        msgEl.style.color = "#b3261e";
-        msgEl.innerHTML = "😂😂😂 گاوات ریدید!<br>این گزینه پوچ ما بودددددد  🤡 فکر کردی هرچی باشه عالیه؟!  😂<br>هیچی گیرت نیومد!";
+        showPopup("😂😂😂 گاوات ریدید!<br>این گزینه پوچ ما بودددددد  🤡 فکر کردی هرچی باشه عالیه؟!  😂<br>هیچی گیرت نیومد!");
         setTimeout(() => {
+            closePopup();
             nextStep('final');
         }, 3500);
     }

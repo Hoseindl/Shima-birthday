@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>چالش تولد طنز و فوق‌العاده! 🎉</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    <div class="container">
+        <div id="step-1" class="step active">
+            <h2>سؤال اول</h2>
+            <p>خب بگو ببینم، به هوش خودت از ۱ تا ۱۰ چه نمره‌ای میدی؟</p>
+            <div class="input-group">
+                <input type="number" id="q1-input" placeholder="عدد وارد کن...">
+                <button onclick="checkQ1()">ثبت نمره</button>
+            </div>
+            <p id="q1-msg" class="error-msg"></p>
+        </div>
+
+        <div id="step-2" class="step">
+            <h2>سؤال ۲</h2>
+            <p>خب حالا که فهمیدی تو چقدر باهوشی 😏 اینو جواب بده ببینم...<br>اگه توی زندگی بعدیت یک سگ سفید 😂 و یه آدم عجیب‌غریب از کنارت رد شه که اسمش آقا رضا باشه، چیکار می‌کنی؟</p>
+            <div class="options-list">
+                <button onclick="checkQ2(1)">سریع دراز می‌کشی، می‌ذاری در آغوشت گرم بگیره 😂</button>
+                <button onclick="checkQ2(2)">امیدوار می‌شی هرگز زندگی بعدیت سگ سفید نشی</button>
+                <button onclick="checkQ2(3)">سعی می‌کنی فرار کنی و نمونی</button>
+                <button onclick="checkQ2(4)">زل می‌زنی توی چشاش و می‌گی: Do you love me?</button>
+            </div>
+            <p id="q2-msg" class="result-msg"></p>
+            <button id="q2-next" class="next-btn hidden" onclick="nextStep(3)">مرحله بعد 😎</button>
+        </div>
+
+        <div id="step-3" class="step">
+            <h2>سؤال ۳</h2>
+            <p>آدم تولدش میشه معمولاً به یه چیزایی اعتراف می‌کنه... اعتراف کن رابطه چرکین تو و نرگس چقدر چرکیه؟ 😂 با توجه به چیزایی که دیدم و چشمام هنوز درد می‌کنه...</p>
+            <div class="options-list">
+                <button onclick="checkQ3(1)">آقا به قرآن چون هر دو ترخون‌ایم دوستیم دیگه 😂</button>
+                <button onclick="checkQ3(2)">گاهی، به ندرت، همو می‌مالیم؛ بابا دوستیم دیگه 😂</button>
+                <button onclick="checkQ3(3)">ما فقط فسادهای همدیگه رو کاور می‌کنیم 😇</button>
+                <button onclick="checkQ3(4)">گاهی نه همیشه زبونم رو در میارم، حالا دیگه آره 😂</button>
+            </div>
+            <p id="q3-msg" class="result-msg"></p>
+            <button id="q3-next" class="next-btn hidden" onclick="nextStep(4)">مرحله بعد 😎</button>
+        </div>
+
+        <div id="step-4" class="step">
+            <h2>سؤال ۴</h2>
+            <p>«از اونجا که خیلی باهوش بودی 😏 یه معمای ساده داریم...اونم اینه:<br>توی آفتاب سایه داره، اما رحیم استرلینگ بهترش رو داره! 😂 تو ازش نداری، اما مردم دارن...<br>حالا جواب چیه؟»</p>
+            <div class="input-group">
+                <input type="text" id="q4-input" placeholder="جواب رو بنویس...">
+                <button onclick="checkQ4()">بزن بریم</button>
+            </div>
+            <p id="q4-msg" class="error-msg"></p>
+            <button id="q4-next" class="next-btn hidden" onclick="nextStep(5)">مرحله بعد 😎</button>
+        </div>
+
+        <div id="step-5" class="step">
+            <h2>سؤال ۵ — معمای سه‌تصویری</h2>
+            <p>«با این ۳ تا عکس کلمه درست رو حدس بزن؛ می‌دونم می‌تونی... از بس باهوشی 😂 خوب به هر سه‌تاشون دقت کن و ببین چه کلمه‌ای ازشون درمیاد!»</p>
+            <div class="fake-images">
+                <div class="img-box">🖼️ عکس اول</div>
+                <div class="img-box">🖼️ عکس دوم</div>
+                <div class="img-box">🖼️ عکس سوم</div>
+            </div>
+            <div class="input-group">
+                <input type="text" id="q5-input" placeholder="جوابت رو اینجا بنویس...">
+                <button onclick="checkQ5()">بررسی جواب</button>
+            </div>
+            <p id="q5-msg" class="error-msg"></p>
+            <button id="q5-next" class="next-btn hidden" onclick="nextStep(6)">مرحله آخر 🎁</button>
+        </div>
+
+        <div id="step-6" class="step">
+            <h2>سؤال ۶ — نسخه نهایی</h2>
+            <p>🎂 «خب تولدته و اینم تبریک تولدته ❤️ ولی بی‌جایزه که نمیشه! بگو ببینم واقعاً از ته دل کدوم یکی از اینا رو انتخاب می‌کردی? 😏»</p>
+            <div class="options-list">
+                <button onclick="checkQ6(1)">🎁 یه هدیه مینیمال و ساده ولی ناز</button>
+                <button onclick="checkQ6(2)">💰 پول حاجی! یعنی همه‌چی، فقط پول 😂</button>
+                <button onclick="checkQ6(3)">🙅‍♀️ نه بابا هدیه نمی‌خوام، واسه چیمه؟</button>
+                <button onclick="checkQ6(4)">🎁 هرچی باشه عالی میشه، بهم بدیدددد!</button>
+            </div>
+            <p id="q6-msg" class="result-msg"></p>
+            <div id="q6-extra"></div>
+        </div>
+
+        <div id="step-final" class="step">
+            <h2>🎉 تبریک میگم!<br>بالاخره رسیدی به آخر این چالش، با مغز فوق‌العاده‌ات 😂❤️</h2>
+            <div class="birthday-card">
+                <p>خواستم بهت بگم:</p>
+                <h3>تولدت مبارکککککک 🎂❤️</h3>
+                <p>خوشگل‌ترین تینیجری که می‌شناسم...</p>
+                <p>درسته یک سال خرتر و گاوتر شدی 😂 اما امیدوارم در کنارش یکمم آدم بشی و درست‌تر بشی...</p>
+                <p>چون تو هر سال خوشگل‌تر از سال قبلی میشی؛ مغز نداشته باشی فایده نداره 😂❤️</p>
+                <hr style="margin: 20px 0; border: 0; border-top: 1px dashed #ccc;">
+                <p><strong>و در آخر، یه جمله از من به تو؛ یه نصیحت...</strong></p>
+                <p style="font-style: italic; color: #555;">
+                    از کتاب <strong>بیچارگان</strong> داستایوفسکی:<br>
+                    «تو نگرانی که مردم درباره من چه فکر می‌کنند؛ اما من عجله دارم که تو را مطمئن کنم که احترام من به خودم برایم بیش از هر چیزی اهمیت دارد.»
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

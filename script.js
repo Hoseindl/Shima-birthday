@@ -9,9 +9,40 @@ function nextStep(stepNumber) {
     document.getElementById(`step-${stepNumber}`).classList.add('active');
 }
 
+// تابع فعال‌سازی انیمیشن ریختن آب (💦) روی صفحه هنگام خطا
+function triggerWaterSplash() {
+    const splashEl = document.getElementById('water-splash-effect');
+    splashEl.classList.add('active');
+    setTimeout(() => {
+        splashEl.classList.remove('active');
+    }, 800); // زمان انیمیشن
+}
+
+// لیست ۱۰ پیشنهاد خنده‌دار برای متن دکمه پاپ‌آپ
+const popupBtnTexts = [
+    "من کص‌خلم، باز امتحان می‌کنم 🤡",
+    "یبار دیگگگگگگگه 😭😂",
+    "نمیخواممممممم 😤",
+    "گوه خوردم، ببرم عقب 🤦‍♂️",
+    "ای بابا، بازم اشتباه زدم؟ 😑",
+    "اشکالی نداره من لج‌بازم 🚀",
+    "بی‌خیال این گندکاری، دوباره! 🤡",
+    "غلط کردم، حلش می‌کنم 😎",
+    "دوباره میزنم این دفعه حدهههه 🔥",
+    "اصلا عقل تو کله من نیست که! 😂"
+];
+
 function showPopup(message) {
     document.getElementById('popup-text').innerHTML = message;
+    
+    // انتخاب تصادفی متن دکمه
+    const randomBtnText = popupBtnTexts[Math.floor(Math.random() * popupBtnTexts.length)];
+    document.getElementById('popup-btn').innerHTML = randomBtnText;
+
     document.getElementById('popup-overlay').classList.remove('hidden');
+    
+    // اجرای افکت ریختن آب روی صفحه
+    triggerWaterSplash();
 }
 
 function closePopup() {
@@ -110,7 +141,7 @@ function checkQ5() {
     const nextBtn = document.getElementById('q5-next');
 
     if (val === "رقیه") {
-        showPopup("🎉 آفرینننن! بالاخره مغز مبارک همکاری کرد  😂❤️");
+        showPopup("🎉 آخه زززززززن با افتخار ادم میگه که من فوت فتیشم مگه   😂❤️");
         nextBtn.classList.remove('hidden');
     } else {
         q5Errors++;
@@ -148,4 +179,9 @@ function checkQ6(option) {
             nextStep('final');
         }, 3500);
     }
+}
+
+// تابع دکمه پایان در انتهای صفحه
+function finishExperience() {
+    showPopup("دوست داریم در جریان باششششش: ❤️😂");
 }

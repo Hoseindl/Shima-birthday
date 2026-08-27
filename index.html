@@ -17,12 +17,19 @@
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- کادر پاپ‌آپ برای خطاهای خنده‌دار -->
+    <!-- لایه انیمیشن پاشیدن آب روی صفحه هنگام خطا -->
+    <div id="water-splash-effect" class="water-splash-hidden">
+        <span class="splash-emoji">💦</span>
+        <span class="splash-emoji">💦</span>
+        <span class="splash-emoji">💦</span>
+    </div>
+
+    <!-- کادر پاپ‌آپ -->
     <div id="popup-overlay" class="popup-overlay hidden" onclick="closePopup()">
         <div class="popup-card" onclick="event.stopPropagation()">
             <span class="material-symbols-rounded popup-icon">sentiment_very_dissatisfied</span>
             <p id="popup-text">متن خطا اینجا میاد...</p>
-            <button class="md-btn primary" onclick="closePopup()">بستن و تلاش دوباره 😂</button>
+            <button id="popup-btn" class="md-btn primary" onclick="closePopup()">بستن و تلاش دوباره 😂</button>
         </div>
     </div>
 
@@ -55,7 +62,7 @@
                 <button class="md-btn option" onclick="checkQ2(3)">سعی می‌کنی فرار کنی و نمونی</button>
                 <button class="md-btn option" onclick="checkQ2(4)">زل می‌زنی توی چشاش و می‌گی: Do you love me?</button>
             </div>
-            <button id="q2-next" class="md-btn success next-btn hidden" onclick="nextStep(3)">منو بماااال💦💦💦💦</button>
+            <button id="q2-next" class="md-btn success next-btn hidden" onclick="nextStep(3)">بزن بریم مرحله بعد 🚀</button>
         </div>
 
         <!-- سؤال سوم -->
@@ -68,7 +75,7 @@
                 <button class="md-btn option" onclick="checkQ3(3)">ما فقط فسادهای همدیگه رو کاور می‌کنیم 😇</button>
                 <button class="md-btn option" onclick="checkQ3(4)">گاهی نه همیشه زبونم رو در میارم، حالا دیگه آره 😂</button>
             </div>
-            <button id="q3-next" class="md-btn success next-btn hidden" onclick="nextStep(4)">منو بماااال💦💦💦💦</button>
+            <button id="q3-next" class="md-btn success next-btn hidden" onclick="nextStep(4)">بزن بریم مرحله بعد 🚀</button>
         </div>
 
         <!-- سؤال چهارم -->
@@ -79,10 +86,10 @@
                 <input type="text" id="q4-input" placeholder="جواب رو بنویس...">
                 <button class="md-btn primary" onclick="checkQ4()">بزن بریم</button>
             </div>
-            <button id="q4-next" class="md-btn success next-btn hidden" onclick="nextStep(5)">منو بماااال💦💦💦💦</button>
+            <button id="q4-next" class="md-btn success next-btn hidden" onclick="nextStep(5)">بزن بریم مرحله بعد 🚀</button>
         </div>
 
-        <!-- سؤال پنجم (۳ عکس بزرگ‌شده) -->
+        <!-- سؤال پنجم (۳ عکس بزرگ) -->
         <div id="step-5" class="step">
             <span class="material-symbols-rounded icon-header">image</span>
             <p>«با این ۳ تا عکس کلمه درست رو حدس بزن؛ می‌دونم می‌تونی... از بس باهوشی 😂 خوب به هر سه‌تاشون دقت کن و ببین چه کلمه‌ای ازشون درمیاد!»</p>
@@ -97,7 +104,7 @@
                 <input type="text" id="q5-input" placeholder="جوابت رو اینجا بنویس...">
                 <button class="md-btn primary" onclick="checkQ5()">بررسی جواب</button>
             </div>
-            <button id="q5-next" class="md-btn success next-btn hidden" onclick="nextStep(6)">منو بماااال💦💦💦💦</button>
+            <button id="q5-next" class="md-btn success next-btn hidden" onclick="nextStep(6)">بزن بریم مرحله بعد 🚀</button>
         </div>
 
         <!-- سؤال ششم -->
@@ -130,6 +137,8 @@
                     «تو نگرانی که مردم درباره من چه فکر می‌کنند؛ اما من عجله دارم که تو را مطمئن کنم که احترام من به خودم برایم بیش از هر چیزی اهمیت دارد.»
                 </p>
             </div>
+            <!-- دکمه پایان انتهای صفحه -->
+            <button class="md-btn primary" onclick="finishExperience()" style="width: 100%; margin-top: 24px;">پایان 🎉</button>
         </div>
     </main>
 

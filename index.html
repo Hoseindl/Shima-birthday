@@ -12,10 +12,19 @@
 </head>
 <body>
 
-    <!-- موزیک پس‌زمینه (فایل music.mp3 را کنار بقیه فایل‌ها آپلود کنید) -->
+    <!-- موزیک پس‌زمینه -->
     <audio id="bg-music" loop>
         <source src="music.mp3" type="audio/mpeg">
     </audio>
+
+    <!-- کادر پاپ‌آپ برای خطاهای خنده‌دار -->
+    <div id="popup-overlay" class="popup-overlay hidden" onclick="closePopup()">
+        <div class="popup-card" onclick="event.stopPropagation()">
+            <span class="material-symbols-rounded popup-icon">sentiment_very_dissatisfied</span>
+            <p id="popup-text">متن خطا اینجا میاد...</p>
+            <button class="md-btn primary" onclick="closePopup()">بستن و تلاش دوباره 😂</button>
+        </div>
+    </div>
 
     <main class="card-container">
         <!-- دکمه شروع موزیک و ورود -->
@@ -34,7 +43,6 @@
                 <input type="number" id="q1-input" placeholder="عدد وارد کن...">
                 <button class="md-btn primary" onclick="checkQ1()">ثبت نمره</button>
             </div>
-            <p id="q1-msg" class="error-msg"></p>
         </div>
 
         <!-- سؤال دوم -->
@@ -47,7 +55,6 @@
                 <button class="md-btn option" onclick="checkQ2(3)">سعی می‌کنی فرار کنی و نمونی</button>
                 <button class="md-btn option" onclick="checkQ2(4)">زل می‌زنی توی چشاش و می‌گی: Do you love me?</button>
             </div>
-            <p id="q2-msg" class="result-msg"></p>
             <button id="q2-next" class="md-btn success next-btn hidden" onclick="nextStep(3)">منو بماااال💦💦💦💦</button>
         </div>
 
@@ -61,7 +68,6 @@
                 <button class="md-btn option" onclick="checkQ3(3)">ما فقط فسادهای همدیگه رو کاور می‌کنیم 😇</button>
                 <button class="md-btn option" onclick="checkQ3(4)">گاهی نه همیشه زبونم رو در میارم، حالا دیگه آره 😂</button>
             </div>
-            <p id="q3-msg" class="result-msg"></p>
             <button id="q3-next" class="md-btn success next-btn hidden" onclick="nextStep(4)">منو بماااال💦💦💦💦</button>
         </div>
 
@@ -73,27 +79,24 @@
                 <input type="text" id="q4-input" placeholder="جواب رو بنویس...">
                 <button class="md-btn primary" onclick="checkQ4()">بزن بریم</button>
             </div>
-            <p id="q4-msg" class="error-msg"></p>
             <button id="q4-next" class="md-btn success next-btn hidden" onclick="nextStep(5)">منو بماااال💦💦💦💦</button>
         </div>
 
-        <!-- سؤال پنجم (با ۳ عکس) -->
+        <!-- سؤال پنجم (۳ عکس بزرگ‌شده) -->
         <div id="step-5" class="step">
             <span class="material-symbols-rounded icon-header">image</span>
             <p>«با این ۳ تا عکس کلمه درست رو حدس بزن؛ می‌دونم می‌تونی... از بس باهوشی 😂 خوب به هر سه‌تاشون دقت کن و ببین چه کلمه‌ای ازشون درمیاد!»</p>
             
-            <!-- گالری ۳ تایی عکس‌ها -->
-            <div class="fake-images">
-                <img src="pic1.jpg" alt="عکس اول" class="puzzle-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/100?text=Pic+1';">
-                <img src="pic2.jpg" alt="عکس دوم" class="puzzle-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/100?text=Pic+2';">
-                <img src="pic3.jpg" alt="عکس سوم" class="puzzle-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/100?text=Pic+3';">
+            <div class="fake-images-large">
+                <img src="pic1.jpg" alt="عکس اول" class="puzzle-img-large" onerror="this.onerror=null; this.src='https://via.placeholder.com/300?text=Pic+1';">
+                <img src="pic2.jpg" alt="عکس دوم" class="puzzle-img-large" onerror="this.onerror=null; this.src='https://via.placeholder.com/300?text=Pic+2';">
+                <img src="pic3.jpg" alt="عکس سوم" class="puzzle-img-large" onerror="this.onerror=null; this.src='https://via.placeholder.com/300?text=Pic+3';">
             </div>
 
             <div class="input-group">
                 <input type="text" id="q5-input" placeholder="جوابت رو اینجا بنویس...">
                 <button class="md-btn primary" onclick="checkQ5()">بررسی جواب</button>
             </div>
-            <p id="q5-msg" class="error-msg"></p>
             <button id="q5-next" class="md-btn success next-btn hidden" onclick="nextStep(6)">منو بماااال💦💦💦💦</button>
         </div>
 
@@ -107,7 +110,6 @@
                 <button class="md-btn option" onclick="checkQ6(3)">🙅‍♀️ نه بابا هدیه نمی‌خوام، واسه چیمه؟</button>
                 <button class="md-btn option" onclick="checkQ6(4)">🎁 هرچی باشه عالی میشه، بهم بدیدددد!</button>
             </div>
-            <p id="q6-msg" class="result-msg"></p>
             <div id="q6-extra"></div>
         </div>
 

@@ -9,13 +9,19 @@ function nextStep(stepNumber) {
     document.getElementById(`step-${stepNumber}`).classList.add('active');
 }
 
-// تابع فعال‌سازی انیمیشن ریختن آب (💦) روی صفحه هنگام خطا
+// تابع دقیق برای پاشیدن قطرات آب (💦) روی صفحه
 function triggerWaterSplash() {
     const splashEl = document.getElementById('water-splash-effect');
+    
+    // پاک کردن کلاس قبلی برای اجرای مجدد انیمیشن در خطاهای بعدی
+    splashEl.classList.remove('active');
+    void splashEl.offsetWidth; // ریست کردن انیمیشن در مرورگر
+    
     splashEl.classList.add('active');
+    
     setTimeout(() => {
         splashEl.classList.remove('active');
-    }, 800); // زمان انیمیشن
+    }, 700);
 }
 
 // لیست ۱۰ پیشنهاد خنده‌دار برای متن دکمه پاپ‌آپ
@@ -41,7 +47,7 @@ function showPopup(message) {
 
     document.getElementById('popup-overlay').classList.remove('hidden');
     
-    // اجرای افکت ریختن آب روی صفحه
+    // فعال کردن انیمیشن ریختن آب
     triggerWaterSplash();
 }
 
@@ -126,7 +132,7 @@ function checkQ4() {
     const nextBtn = document.getElementById('q4-next');
 
     if (val === "کون" || val === "کون.") {
-        showPopup("🎉 بالاخره! مغز مبارک روشن شد  😂");
+        showPopup("🎉 بمال بمالللللل  😂");
         nextBtn.classList.remove('hidden');
     } else {
         let randMsg = q4WrongMsgs[Math.floor(Math.random() * q4WrongMsgs.length)];
@@ -141,7 +147,7 @@ function checkQ5() {
     const nextBtn = document.getElementById('q5-next');
 
     if (val === "رقیه") {
-        showPopup("🎉 آخه زززززززن با افتخار ادم میگه که من فوت فتیشم مگه   😂❤️");
+        showPopup("🎉به رقه نخندیم  😂❤️");
         nextBtn.classList.remove('hidden');
     } else {
         q5Errors++;
@@ -173,7 +179,7 @@ function checkQ6(option) {
         showPopup("😂 هورررررااااا! ۱۵۰ هزار تومن  💸💸💸");
         extraEl.innerHTML = `<button class="md-btn success next-btn" onclick="nextStep('final')">خب ببینیم آخرش چی میشه  😂</button>`;
     } else if (option === 4) {
-        showPopup("😂😂😂 گاوات ریدید!<br>این گزینه پوچ ما بودددددد  🤡 فکر کردی هرچی باشه عالیه؟!  😂<br>هیچی گیرت نیومد!");
+        showPopup("😂😂😂 گاوات ریدی!<br>این گزینه پوچ ما بودددددد  🤡 فکر کردی هرچی باشه عالیه؟!  😂<br>هیچی گیرت نیومد!");
         setTimeout(() => {
             closePopup();
             nextStep('final');
@@ -181,7 +187,6 @@ function checkQ6(option) {
     }
 }
 
-// تابع دکمه پایان در انتهای صفحه
 function finishExperience() {
     showPopup("دوست داریم در جریان باششششش: ❤️😂");
 }

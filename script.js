@@ -73,7 +73,7 @@ function checkQ1() {
     const val = document.getElementById('q1-input').value.trim();
 
     if (val === "0") {
-        showPopup("🎉 بالاخره! دیدی تونستی؟ 😂");
+        showPopup("🎉 بالاخره! نکشیمون باهوشش 😂");
         setTimeout(() => {
             closePopup();
             nextStep(2);
@@ -147,7 +147,7 @@ function checkQ5() {
     const nextBtn = document.getElementById('q5-next');
 
     if (val === "رقیه") {
-        showPopup("🎉به رقه نخندیم  😂❤️");
+        showPopup("🎉به رقیه نخندیم  😂❤️");
         nextBtn.classList.remove('hidden');
     } else {
         q5Errors++;

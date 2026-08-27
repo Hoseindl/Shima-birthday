@@ -1,14 +1,14 @@
 :root {
     --md-sys-color-background: #fffbfe;
-    --md-sys-color-surface: rgba(255, 255, 255, 0.94);
+    --md-sys-color-surface: rgba(255, 255, 255, 0.92);
     --md-sys-color-primary: #7c3aed;
     --md-sys-color-on-primary: #ffffff;
     --md-sys-color-primary-container: #ede9fe;
     --md-sys-color-secondary: #4b5563;
     --md-sys-color-error: #dc2626;
     --md-sys-color-success: #16a34a;
-    --md-sys-color-outline: #d1d5db;
-    --md-sys-color-surface-variant: #f3f4f6;
+    --md-sys-color-outline: #e5e7eb;
+    --md-sys-color-surface-variant: #f9fafb;
     --md-sys-color-on-surface: #1f2937;
 }
 
@@ -20,7 +20,6 @@
 }
 
 body {
-    /* تنظیم عکس مینیمال به عنوان پس‌زمینه (فایل background.jpg) */
     background-image: url('background.jpg');
     background-size: cover;
     background-position: center;
@@ -33,9 +32,9 @@ body {
     align-items: center;
     padding: 16px;
     position: relative;
+    overflow-x: hidden;
 }
 
-/* یک لایه تیره/رنگی ملایم روی عکس می‌اندازد تا متن‌ها فوق‌العاده خوانا شوند */
 body::before {
     content: '';
     position: absolute;
@@ -43,24 +42,69 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(15, 23, 42, 0.4); 
-    backdrop-filter: blur(4px); /* تار کردن ملایم عکس پس‌زمینه برای تمرکز روی کارت */
+    background: rgba(15, 23, 42, 0.45); 
+    backdrop-filter: blur(6px);
     z-index: 1;
+}
+
+/* افکت آب و انیمیشن ریختن سطل آب روی صفحه */
+#water-splash-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+#water-splash-effect.active {
+    opacity: 1;
+    animation: splashDown 0.8s ease-out forwards;
+}
+
+.splash-emoji {
+    font-size: 4rem;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
+    transform: translateY(-100px) scale(0.5);
+    animation: dropWater 0.8s ease-in-out forwards;
+}
+
+.splash-emoji:nth-child(2) { animation-delay: 0.1s; font-size: 5rem; }
+.splash-emoji:nth-child(3) { animation-delay: 0.2s; font-size: 4.5rem; }
+
+@keyframes dropWater {
+    0% {
+        transform: translateY(-120px) scale(0.5) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(70vh) scale(1.6) rotate(15deg);
+        opacity: 0;
+    }
 }
 
 .card-container {
     background: var(--md-sys-color-surface);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     width: 100%;
-    max-width: 650px;
-    padding: 36px;
-    border-radius: 32px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    max-width: 620px;
+    padding: 40px 32px;
+    border-radius: 36px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.7);
     text-align: center;
     position: relative;
-    z-index: 2; /* بالاتر از لایه تار کننده پس‌زمینه قرار می‌گیرد */
+    z-index: 2;
     overflow: hidden;
 }
 
@@ -70,21 +114,22 @@ body::before {
 
 .step.active {
     display: block;
-    animation: mdFadeIn 0.4s cubic-bezier(0.2, 0.0, 0, 1) forwards;
+    animation: mdFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes mdFadeIn {
-    from { opacity: 0; transform: translateY(16px) scale(0.97); }
+    from { opacity: 0; transform: translateY(20px) scale(0.96); }
     to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .icon-header {
-    font-size: 44px;
+    font-size: 48px;
     color: var(--md-sys-color-primary);
     background: var(--md-sys-color-primary-container);
-    padding: 16px;
-    border-radius: 24px;
-    margin-bottom: 20px;
+    padding: 18px;
+    border-radius: 26px;
+    margin-bottom: 22px;
+    box-shadow: 0 8px 16px rgba(124, 58, 237, 0.1);
 }
 
 .icon-header.celebrate {
@@ -93,17 +138,18 @@ body::before {
 }
 
 h2 {
-    font-size: 1.45rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--md-sys-color-on-surface);
-    margin-bottom: 14px;
+    margin-bottom: 16px;
+    line-height: 1.5;
 }
 
 p {
     font-size: 1.05rem;
     color: var(--md-sys-color-secondary);
     margin-bottom: 24px;
-    line-height: 1.8;
+    line-height: 1.9;
 }
 
 .input-group {
@@ -115,30 +161,30 @@ p {
 
 input {
     flex: 1;
-    padding: 14px 20px;
+    padding: 16px 20px;
     border: 2px solid var(--md-sys-color-outline);
-    border-radius: 16px;
+    border-radius: 18px;
     outline: none;
-    font-size: 1rem;
+    font-size: 1.05rem;
     background: #ffffff;
     color: var(--md-sys-color-on-surface);
-    transition: all 0.2s ease;
+    transition: all 0.25s ease;
 }
 
 input:focus {
     border-color: var(--md-sys-color-primary);
-    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15);
+    box-shadow: 0 0 0 5px rgba(124, 58, 237, 0.12);
 }
 
 .md-btn {
-    padding: 14px 28px;
+    padding: 15px 28px;
     border: none;
     border-radius: 100px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 600;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
 
 .md-btn:active {
@@ -152,7 +198,7 @@ input:focus {
 
 .md-btn.primary:hover {
     background: #6d28d9;
-    box-shadow: 0 6px 16px rgba(124, 58, 237, 0.3);
+    box-shadow: 0 6px 18px rgba(124, 58, 237, 0.3);
 }
 
 .md-btn.success {
@@ -181,23 +227,24 @@ input:focus {
     color: var(--md-sys-color-on-surface);
     border: 1px solid var(--md-sys-color-outline);
     text-align: right;
-    padding: 16px 22px;
-    border-radius: 18px;
+    padding: 18px 24px;
+    border-radius: 20px;
     font-weight: 500;
     box-shadow: none;
+    transition: all 0.2s ease;
 }
 
 .md-btn.option:hover {
-    background: #e5e7eb;
+    background: #f1f5f9;
     border-color: var(--md-sys-color-primary);
     transform: translateX(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
 }
 
 .hidden {
     display: none !important;
 }
 
-/* عکس‌های بزرگ‌شده مرحله ۵ */
 .fake-images-large {
     display: flex;
     justify-content: center;
@@ -207,11 +254,11 @@ input:focus {
 
 .puzzle-img-large {
     width: 31%;
-    height: 180px;
+    height: 185px;
     object-fit: cover;
     border-radius: 20px;
     border: 3px solid white;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.15);
     background: #e5e7eb;
     transition: transform 0.3s ease;
 }
@@ -220,7 +267,6 @@ input:focus {
     transform: scale(1.05);
 }
 
-/* استایل پاپ‌آپ */
 .popup-overlay {
     position: fixed;
     top: 0;
@@ -228,59 +274,59 @@ input:focus {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    animation: fadeIn 0.2s ease;
 }
 
 .popup-card {
     background: white;
-    padding: 30px;
-    border-radius: 28px;
+    padding: 32px;
+    border-radius: 30px;
     width: 90%;
     max-width: 400px;
     text-align: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    animation: popUpScale 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+    animation: popUpScale 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @keyframes popUpScale {
-    from { transform: scale(0.8); opacity: 0; }
+    from { transform: scale(0.75); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
 
 .popup-icon {
-    font-size: 50px;
+    font-size: 52px;
     color: var(--md-sys-color-error);
     margin-bottom: 12px;
 }
 
 .popup-card p {
     color: #1f2937;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 .birthday-card {
     background: #ffffff;
     border: 1px solid var(--md-sys-color-outline);
-    padding: 28px;
-    border-radius: 24px;
+    padding: 30px;
+    border-radius: 26px;
     text-align: right;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.03);
 }
 
 .birthday-card h3 {
     color: var(--md-sys-color-primary);
-    margin: 10px 0;
+    margin: 12px 0;
+    font-size: 1.4rem;
 }
 
 .divider {
-    margin: 18px 0;
+    margin: 20px 0;
     border: 0;
     border-top: 1px dashed var(--md-sys-color-outline);
 }
@@ -290,7 +336,7 @@ input:focus {
     color: var(--md-sys-color-secondary);
     font-size: 0.95rem;
     background: var(--md-sys-color-surface-variant);
-    padding: 14px;
-    border-radius: 14px;
-    margin-top: 10px;
+    padding: 16px;
+    border-radius: 16px;
+    margin-top: 12px;
 }

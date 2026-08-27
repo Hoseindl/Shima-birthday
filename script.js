@@ -190,3 +190,17 @@ function checkQ6(option) {
 function finishExperience() {
     showPopup("دوست داریم در جریان باششششش: ❤️😂");
 }
+function startQuizFromWelcome() {
+    // محو کردن صفحه ولکام
+    const welcomeOverlay = document.getElementById('welcome-overlay');
+    welcomeOverlay.classList.add('hidden');
+
+    // پلی کردن موزیک پس‌زمینه (در صورت وجود)
+    const music = document.getElementById('bg-music');
+    if (music) {
+        music.play().catch(e => console.log("Audio play blocked by browser policy"));
+    }
+
+    // رفتن به مرحله اول سوالات
+    nextStep(1);
+}
